@@ -1,4 +1,3 @@
-// api/random-image.js
 import fs from 'fs';
 import path from 'path';
 
@@ -9,7 +8,8 @@ export const config = {
 };
 
 export default function handler(req, res) {
-  const imagesDir = path.resolve('./public/images');
+  const imagesDir = path.join(process.cwd(), 'public', 'images'); // 수정된 경로 처리
+
   if (!fs.existsSync(imagesDir)) {
     return res.status(500).send('Image directory not found');
   }
